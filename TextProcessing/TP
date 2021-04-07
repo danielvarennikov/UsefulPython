@@ -1,0 +1,23 @@
+from TextProcessing import Tokeniser
+from TextProcessing import Parser
+
+
+# Print all the .c and .h files in the current folder
+def check_ch_folder():
+    import os
+    filenames = os.listdir('.')
+    return [name for name in filenames if name.endswith(('.c', '.h'))]
+
+
+# Find all the c-style comments
+def get_c_comments(text):
+    import re
+    comment = re.compile(r'/\*((?:.|\n)*?)\*/')
+    return comment.findall(text)
+
+
+lexer = Tokeniser.Tokeniser()
+parser = Parser.Parser()
+tokens = lexer.tokens_iterable(" 4 - 1 * 6 ")
+
+print(parser.parse(tokens))
